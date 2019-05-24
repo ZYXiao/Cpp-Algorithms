@@ -33,14 +33,8 @@ int main(int argc, const char * argv[]) {
      */
     
     BiTree tree;
-    
-    cout << "后序遍历二叉树：";
-    tree.postOrderTraverse(tree.root, &visit);
-    cout << endl;
-    
-    cout << "层次遍历二叉树：";
-    tree.levelOrderTraverse(&visit);
-    cout << endl;
+    int width = tree.getWidth();
+    cout << "该二叉树的宽度为：" << width << endl;
     
     return 0;
 }

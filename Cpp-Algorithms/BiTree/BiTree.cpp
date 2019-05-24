@@ -5,6 +5,7 @@ using namespace std;
 
 // https://blog.csdn.net/chixujohnny/article/details/50900804
 BiTree::BiTree() {
+    nodeCount = 0;
     createBitTree(root);
 }
 
@@ -17,6 +18,7 @@ void BiTree::createBitTree(BiTNode *&node) {
     } else {
         node = new BiTNode;
         node->data = ch;
+        nodeCount++;
         createBitTree(node->lchild);
         createBitTree(node->rchild);
     }
@@ -71,8 +73,66 @@ void BiTree::levelOrderTraverse(void (*visit)(BiTNode *node)) {
     }
 }
 
-int BiTree::getDepth(void) {
-    return 1;
+// 计算二叉树深度的思想是max(左子树深度，右子树深度)+1；
+// 采用后续遍历计算深度；
+int BiTree::getDepth(BiTNode *node) {
+    if (node == NULL) {
+        return 0; // 空树的深度为0
+    }
+    int ld = getDepth(node->lchild);
+    int rd = getDepth(node->rchild);
+    return ld > rd ? ld + 1 : rd + 1;
+}
+
+int BiTree::getWidth(void) {
+    if (root != NULL) {
+        LevelNode *queue[nodeCount]; // 这里定义了一个非循环但空间足够大的队列
+        int front = 0;
+        int rear = 0;
+        LevelNode *node = new LevelNode;
+        node->level = 1;
+        node->node = root;
+        queue[rear] = node;
+        rear++; // 非循环但空间足够大的队列这里只要++
+        while (front != rear) {
+            LevelNode *levelNode = queue[front];
+            front++;
+            BiTNode *biTNode = levelNode->node;
+            if (biTNode->lchild != NULL) {
+                node = new LevelNode;
+                node->level = (levelNode->level + 1);
+                node->node = biTNode->lchild;
+                queue[rear] = node;
+                rear++;
+            }
+            if (biTNode->rchild != NULL) {
+                node = new LevelNode;
+                node->level = (levelNode->level + 1);
+                node->node = biTNode->rchild;
+                queue[rear] = node;
+                rear++;
+            }
+            
+        }
+        // 到这一步，queue中已存满了所有的结点信息，接下来遍历去获取二叉树的宽度
+        int max = 0;
+        int levelCount = 0;
+        int curLevel = 1;
+        for (int i = 0; i < nodeCount; i ++) {
+            LevelNode *levelNode = queue[i];
+            if (levelNode->level == curLevel) {
+                levelCount ++;
+            } else {
+                if (max < levelCount) {
+                    max = levelCount;
+                }
+                curLevel = levelNode->level;
+                levelCount = 1;
+            }
+        }
+        return max < levelCount ? levelCount : max;
+    }
+    return 0;
 }
 
 void BiTree::search(BiTNode *p, BiTNode *&q, char key) {
@@ -86,6 +146,10 @@ void BiTree::search(BiTNode *p, BiTNode *&q, char key) {
             }
         }
     }
+}
+
+int BiTree::getNodeCount() {
+    return nodeCount;
 }
 
 BiTree::~BiTree() {
