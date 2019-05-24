@@ -86,8 +86,8 @@
 		F3A5A39B2296D85800E28627 /* SqQueue */ = {
 			isa = PBXGroup;
 			children = (
-				F3A5A39C2296D85800E28627 /* SqQueue.cpp */,
 				F3A5A39D2296D85800E28627 /* SqQueue.hpp */,
+				F3A5A39C2296D85800E28627 /* SqQueue.cpp */,
 			);
 			path = SqQueue;
 			sourceTree = "<group>";
