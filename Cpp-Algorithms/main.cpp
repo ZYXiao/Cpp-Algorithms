@@ -32,5 +32,8 @@ int main(int argc, const char * argv[]) {
      }
      */
     
+    BiTree tree;
+    tree.inOrderTraverseNonRecursion(&visit);
+    
     return 0;
 }

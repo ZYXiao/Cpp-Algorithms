@@ -65,7 +65,22 @@ void BiTree::inOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node)) {
 }
 
 void BiTree::inOrderTraverseNonRecursion(void (*visit)(BiTNode *node)) {
-    
+    BiTNode *stack[nodeCount];
+    int top = -1;
+    BiTNode *p = root;
+    while (top != -1 || p != NULL) {
+        while (p != NULL) {
+            stack[++top] = p;
+            p = p->lchild;
+        }
+        if (top != -1) { // 栈不为空的时候出栈
+            p = stack[top--];
+            if (visit != NULL) {
+                visit(p);
+            }
+            p = p->rchild;
+        }
+    }
 }
 
 void BiTree::postOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node)) {
