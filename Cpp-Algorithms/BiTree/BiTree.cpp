@@ -26,26 +26,60 @@ void BiTree::createBitTree(BiTNode *&node) {
 
 void BiTree::preOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node)) {
     if (node != NULL) {
-        visit(node);
+        if (visit != NULL) {
+            visit(node);
+        }
         preOrderTraverse(node->lchild, visit);
         preOrderTraverse(node->rchild, visit);
+    }
+}
+
+void BiTree::preOrderTraverseNonRecursion(void (*visit)(BiTNode *node)) {
+    if (root != NULL) {
+        BiTNode *stack[nodeCount]; // 初始化栈
+        int top = -1; // 初始化栈
+        stack[++top] = root; // 头结点入栈
+        while (top != -1) { // 栈不为空才执行循环
+            BiTNode *node = stack[top--]; // 元素出栈
+            if (visit != NULL) {
+                visit(node); // 访问结点
+            }
+            if (node->rchild != NULL) {
+                stack[++top] = node->rchild; // 注意：这里右结点先入栈
+            }
+            if (node->lchild != NULL) {
+                stack[++top] = node->lchild; // 注意：左结点后入栈
+            }
+        }
     }
 }
 
 void BiTree::inOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node)) {
     if (node != NULL) {
         inOrderTraverse(node->lchild, visit);
-        visit(node);
+        if (visit != NULL) {
+            visit(node);
+        }
         inOrderTraverse(node->rchild, visit);
     }
+}
+
+void BiTree::inOrderTraverseNonRecursion(void (*visit)(BiTNode *node)) {
+    
 }
 
 void BiTree::postOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node)) {
     if (node != NULL) {
         postOrderTraverse(node->lchild, visit);
         postOrderTraverse(node->rchild, visit);
-        visit(node);
+        if (visit != NULL) {
+            visit(node);
+        }
     }
+}
+
+void BiTree::postOrderTraverseNonRecursion(void (*visit)(BiTNode *node)) {
+    
 }
 
 void BiTree::levelOrderTraverse(void (*visit)(BiTNode *node)) {

@@ -32,9 +32,5 @@ int main(int argc, const char * argv[]) {
      }
      */
     
-    BiTree tree;
-    int width = tree.getWidth();
-    cout << "该二叉树的宽度为：" << width << endl;
-    
     return 0;
 }

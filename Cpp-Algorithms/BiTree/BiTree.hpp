@@ -31,7 +31,7 @@ private:
     int nodeCount;
     
 public:
-    // 二叉链表根节点
+    // 二叉链表根节点，因为要递归调用所以才设置为public；
     BiTNode *root;
     
     // 构造函数
@@ -42,13 +42,16 @@ public:
     // 用先序递归的方式创建二叉树
     void createBitTree(BiTNode *&node);
     
-    // 前序遍历，递归调用所以参数中需要有node字段
+    /* 二叉树遍历 */
+    // 前序遍历，如果递归调用则参数中需要有node字段
     void preOrderTraverse(BiTNode *node ,void (*visit)(BiTNode *node));
-    // 中序遍历，递归调用所以参数中需要有node字段
+    void preOrderTraverseNonRecursion(void (*visit)(BiTNode *node));
+    // 中序遍历，如果递归调用则参数中需要有node字段
     void inOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node));
-    // 后序遍历，递归调用所以参数中需要有node字段
+    void inOrderTraverseNonRecursion(void (*visit)(BiTNode *node));
+    // 后序遍历，如果递归调用则参数中需要有node字段
     void postOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node));
-    
+    void postOrderTraverseNonRecursion(void (*visit)(BiTNode *node));
     // 层次遍历，非递归调用所以参数中不带node字段
     void levelOrderTraverse(void (*visit)(BiTNode *node));
     
