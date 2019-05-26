@@ -109,7 +109,9 @@ void BiTree::levelOrderTraverse(void (*visit)(BiTNode *node)) {
         while (rear != front) { // 这里很关键：当队列不空时再进行循环
             BiTNode node = queue[front];
             front = (front + 1) % maxSize;
-            visit(&node);
+            if (visit != NULL) {
+                visit(&node);
+            }
             if (node.lchild != NULL) {
                 queue[rear] = *node.lchild;
                 rear = (rear + 1) % maxSize;
