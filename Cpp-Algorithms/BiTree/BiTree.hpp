@@ -29,11 +29,13 @@ class BiTree {
 private:
     // 二叉链表总结点个数
     int nodeCount;
-    
-public:
-    // 二叉链表根节点，因为要递归调用所以才设置为public；
+    // 二叉链表根节点
     BiTNode *root;
     
+    // 获取结点层次信息
+    void getLevelNodeInfo(LevelNode ***&info, int &depth);
+    
+public:
     // 构造函数
     BiTree();
     // 析构函数
@@ -44,7 +46,7 @@ public:
     
     /* 二叉树遍历 */
     // 前序遍历，如果递归调用则参数中需要有node字段
-    void preOrderTraverse(BiTNode *node ,void (*visit)(BiTNode *node));
+    void preOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node));
     void preOrderTraverseNonRecursion(void (*visit)(BiTNode *node));
     // 中序遍历，如果递归调用则参数中需要有node字段
     void inOrderTraverse(BiTNode *node, void (*visit)(BiTNode *node));
@@ -64,8 +66,14 @@ public:
     // 查找data域值为key的第一个节点
     void search(BiTNode *p, BiTNode *&q, char key);
     
+    // 获取根结点
+    BiTNode *getRoot(void);
     // 获取总结点个数
     int getNodeCount(void);
+    // 判断二叉树是否是完全二叉树
+    bool isCompletely(void);
+    // 判断二叉树是否是满二叉树
+    bool isFull(void);
 };
 
 #endif /* BiTree_hpp */

@@ -33,7 +33,16 @@ int main(int argc, const char * argv[]) {
      */
     
     BiTree tree;
-    tree.inOrderTraverseNonRecursion(&visit);
+    if(tree.isFull()) {
+        cout << "该树是满二叉树" << endl;
+    } else {
+        cout << "该树不是满二叉树" << endl;
+    }
+    
+//    int **a = new int *[6]();
+//    for (int i = 0; i < 6; i++) {
+//        cout << a[i] << endl;
+//    }
     
     return 0;
 }

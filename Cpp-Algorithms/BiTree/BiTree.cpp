@@ -1,5 +1,6 @@
 #include "BiTree.hpp"
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -163,7 +164,6 @@ int BiTree::getWidth(void) {
                 queue[rear] = node;
                 rear++;
             }
-            
         }
         // 到这一步，queue中已存满了所有的结点信息，接下来遍历去获取二叉树的宽度
         int max = 0;
@@ -199,8 +199,90 @@ void BiTree::search(BiTNode *p, BiTNode *&q, char key) {
     }
 }
 
+void BiTree::getLevelNodeInfo(LevelNode ***&info, int &depth) {
+    if (root != NULL) {
+        LevelNode **queue = new LevelNode *[nodeCount]; // 这里定义了一个非循环但空间足够大的队列
+        int front = 0;
+        int rear = 0;
+        LevelNode *node = new LevelNode;
+        node->level = 1;
+        node->node = root;
+        queue[rear] = node;
+        rear++; // 非循环但空间足够大的队列这里只要++
+        while (front != rear) {
+            LevelNode *levelNode = queue[front];
+            front++;
+            BiTNode *biTNode = levelNode->node;
+            if (biTNode->lchild != NULL) {
+                node = new LevelNode;
+                node->level = (levelNode->level + 1);
+                node->node = biTNode->lchild;
+                queue[rear] = node;
+                rear++;
+            }
+            if (biTNode->rchild != NULL) {
+                node = new LevelNode;
+                node->level = (levelNode->level + 1);
+                node->node = biTNode->rchild;
+                queue[rear] = node;
+                rear++;
+            }
+        }
+        // 到这一步一维数组queue里面存储了所有的结点信息
+        // 下面去分解一维数组queue得到二维数组info
+        LevelNode *lastNode = queue[nodeCount - 1];
+        depth = lastNode->level; // 获取二叉树的深度
+        int maxWidth = pow(2, depth - 1); // 层上结点的最大个数
+        info = new LevelNode **[depth];
+        int row = 0;
+        int column = 0;
+        info[row] = new LevelNode *[maxWidth](); // 加()可统一全部初始化，参考https://blog.csdn.net/sinat_32427167/article/details/52901883
+        for (int i = 0; i < nodeCount; i ++) {
+            LevelNode *levelNode = queue[i];
+            if (levelNode->level == row + 1) { // 层次号是从1开始的
+                info[row][column++] = levelNode;
+            } else {
+                info[++row] = new LevelNode *[maxWidth]();
+                column = 0;
+                info[row][column++] = levelNode;
+            }
+        }
+    } else {
+        info = NULL;
+        depth = 0;
+    }
+}
+
+BiTNode *BiTree::getRoot(void) {
+    return root;
+}
+
 int BiTree::getNodeCount() {
     return nodeCount;
+}
+
+bool BiTree::isCompletely(void) {
+    return false;
+}
+
+bool BiTree::isFull(void) {
+    int depth;
+    LevelNode ***info;
+    getLevelNodeInfo(info, depth);
+    LevelNode **arr = info[depth - 1];
+    int maxCount = pow(2, depth - 1);
+    // 遍历计算数组中有效的元素个数，用sizeOf只可以计算出数组所占有的空间大小；
+    int count = 0;
+    for (int i = 0; i < maxCount; i++) {
+        LevelNode *node = arr[i];
+        if (node != NULL) {
+            count++;
+        }
+    }
+    if (maxCount == count) {
+        return true;
+    }
+    return false;
 }
 
 BiTree::~BiTree() {
