@@ -33,10 +33,10 @@ int main(int argc, const char * argv[]) {
      */
     
     BiTree tree;
-    if(tree.isFull()) {
-        cout << "该树是满二叉树" << endl;
+    if(tree.isCompletely()) {
+        cout << "该树是完全二叉树" << endl;
     } else {
-        cout << "该树不是满二叉树" << endl;
+        cout << "该树不是完全二叉树" << endl;
     }
     
 //    int **a = new int *[6]();

@@ -262,8 +262,38 @@ int BiTree::getNodeCount() {
     return nodeCount;
 }
 
+// 算法思想：
+// 1、完全二叉树第depth-1层上面结点数一定是满的；
+// 2、遍历第depth-1层上的结点的左右孩子，如果出现过Null之后又出现了非Null的孩子则为非完全二叉树；
 bool BiTree::isCompletely(void) {
-    return false;
+    LevelNode ***info;
+    int depth;
+    getLevelNodeInfo(info, depth);
+    if (!depth) { // 空树为非完全二叉树；
+        return false;
+    }
+    if (depth == 1) { // 只有一个结点的树为完全二叉树；
+        return true;
+    }
+    LevelNode **arr = info[depth - 2];
+    int max = pow(2, depth - 2);
+    bool meetNull = false;
+    for (int i = 0; i < max; i++) {
+        LevelNode *ln = arr[i];
+        if (ln == NULL) {
+            return false; // 第(depth-1)层上结点不满的话为非完全二叉树；
+        }
+        if (meetNull && (ln->node->lchild || ln->node->rchild)) {
+            return false;
+        }
+        if (!ln->node->lchild && ln->node->rchild) {
+            return false;
+        }
+        if (!ln->node->lchild || !ln->node->rchild) {
+            meetNull = true;
+        }
+    }
+    return true;
 }
 
 bool BiTree::isFull(void) {
@@ -278,6 +308,8 @@ bool BiTree::isFull(void) {
         LevelNode *node = arr[i];
         if (node != NULL) {
             count++;
+        } else {
+            break;
         }
     }
     if (maxCount == count) {
