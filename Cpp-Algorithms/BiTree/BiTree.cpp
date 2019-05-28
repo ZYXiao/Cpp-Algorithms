@@ -199,6 +199,7 @@ void BiTree::search(BiTNode *p, BiTNode *&q, char key) {
     }
 }
 
+// 注意：这个算法没有考虑到内存的释放
 void BiTree::getLevelNodeInfo(LevelNode ***&info, int &depth) {
     if (root != NULL) {
         LevelNode **queue = new LevelNode *[nodeCount]; // 这里定义了一个非循环但空间足够大的队列
