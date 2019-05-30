@@ -265,7 +265,7 @@ int BiTree::getNodeCount() {
 // 算法思想：
 // 1、完全二叉树第depth-1层上面结点数一定是满的；
 // 2、遍历第depth-1层上的结点的左右孩子，如果出现过Null之后又出现了非Null的孩子则为非完全二叉树；
-// 另外一种思想，参考https://www.jianshu.com/p/ee6b5807195d
+// 另外一种更好的思想，参考https://www.jianshu.com/p/ee6b5807195d
 bool BiTree::isCompletely(void) {
     LevelNode ***info;
     int depth;
