@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A4FC8B23536FC200338641 /* SingleLinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A4FC8923536FC200338641 /* SingleLinkedList.cpp */; };
+		F3A4FC8E23536FEE00338641 /* DoubleLinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A4FC8C23536FEE00338641 /* DoubleLinkedList.cpp */; };
+		F3A4FC912353701100338641 /* CircularLinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A4FC8F2353701100338641 /* CircularLinkedList.cpp */; };
 		F3A5A3922296D83100E28627 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A5A3912296D83100E28627 /* main.cpp */; };
 		F3A5A3A12296D85800E28627 /* LinkQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A5A39A2296D85800E28627 /* LinkQueue.cpp */; };
 		F3A5A3A22296D85800E28627 /* SqQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A5A39C2296D85800E28627 /* SqQueue.cpp */; };
@@ -26,6 +29,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3A4FC8923536FC200338641 /* SingleLinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SingleLinkedList.cpp; sourceTree = "<group>"; };
+		F3A4FC8A23536FC200338641 /* SingleLinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SingleLinkedList.hpp; sourceTree = "<group>"; };
+		F3A4FC8C23536FEE00338641 /* DoubleLinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DoubleLinkedList.cpp; sourceTree = "<group>"; };
+		F3A4FC8D23536FEE00338641 /* DoubleLinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DoubleLinkedList.hpp; sourceTree = "<group>"; };
+		F3A4FC8F2353701100338641 /* CircularLinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CircularLinkedList.cpp; sourceTree = "<group>"; };
+		F3A4FC902353701100338641 /* CircularLinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CircularLinkedList.hpp; sourceTree = "<group>"; };
 		F3A5A38E2296D83100E28627 /* Cpp-Algorithms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Cpp-Algorithms"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A5A3912296D83100E28627 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F3A5A3992296D85800E28627 /* LinkQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinkQueue.hpp; sourceTree = "<group>"; };
@@ -47,6 +56,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3A4FC8623536F8900338641 /* SingleLinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				F3A4FC8A23536FC200338641 /* SingleLinkedList.hpp */,
+				F3A4FC8923536FC200338641 /* SingleLinkedList.cpp */,
+			);
+			path = SingleLinkedList;
+			sourceTree = "<group>";
+		};
+		F3A4FC8723536F8A00338641 /* CircularLinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				F3A4FC902353701100338641 /* CircularLinkedList.hpp */,
+				F3A4FC8F2353701100338641 /* CircularLinkedList.cpp */,
+			);
+			path = CircularLinkedList;
+			sourceTree = "<group>";
+		};
+		F3A4FC8823536F8A00338641 /* DoubleLinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				F3A4FC8D23536FEE00338641 /* DoubleLinkedList.hpp */,
+				F3A4FC8C23536FEE00338641 /* DoubleLinkedList.cpp */,
+			);
+			path = DoubleLinkedList;
+			sourceTree = "<group>";
+		};
 		F3A5A3852296D83100E28627 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +102,9 @@
 		F3A5A3902296D83100E28627 /* Cpp-Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				F3A4FC8623536F8900338641 /* SingleLinkedList */,
+				F3A4FC8823536F8A00338641 /* DoubleLinkedList */,
+				F3A4FC8723536F8A00338641 /* CircularLinkedList */,
 				F3A5A39E2296D85800E28627 /* BiTree */,
 				F3A5A3982296D85800E28627 /* LinkQueue */,
 				F3A5A39B2296D85800E28627 /* SqQueue */,
@@ -160,7 +199,10 @@
 				F3A5A3922296D83100E28627 /* main.cpp in Sources */,
 				F3A5A3A22296D85800E28627 /* SqQueue.cpp in Sources */,
 				F3A5A3A32296D85800E28627 /* BiTree.cpp in Sources */,
+				F3A4FC8E23536FEE00338641 /* DoubleLinkedList.cpp in Sources */,
 				F3A5A3A12296D85800E28627 /* LinkQueue.cpp in Sources */,
+				F3A4FC8B23536FC200338641 /* SingleLinkedList.cpp in Sources */,
+				F3A4FC912353701100338641 /* CircularLinkedList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
